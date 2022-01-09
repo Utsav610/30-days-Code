@@ -1,0 +1,103 @@
+given a number check whether it contains even number of digits or odd number of digits. consider thw sample case given below.
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        if(n%2==0){
+            System.out.print("Even");
+        }
+        else{
+            System.out.print("Odd");
+        }
+    }
+}
+
+Phoenix Numbers are the numbers whose sum of factorial of digits is equal to the original number. Given a number, check if it is a Phoenix Number or not. Print Yes or No
+Sum of digit factorials = 1! + 4! + 5! = 145
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int sum = 0;
+        int temp = n;
+        while (n != 0) {
+            int i = 1;
+            int fact = 1;
+            int rem = n % 10;
+
+            while (i <= rem) {
+                fact = fact * i;
+                i++;
+            }
+            sum = sum + fact;
+            n = n / 10;
+        }
+
+        if (sum == temp)
+            System.out.println("Yes");
+        else
+            System.out.println("No");
+
+    }
+}
+
+The task is to count the number of elements that occurs exactly floor(N/K) times in the array.
+Input:
+5 2
+1 4 1 2 4
+Output:
+2
+Explanation:
+In the given array, 1 and 4 occurs floor(5/2) = 2 times. So count is 2.
+First line contains 2 integers N and K seperated by spaces. Second line contains N array elements seperated by spaces.
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+       
+        Scanner sc = new Scanner(System.in);
+        int n=sc.nextInt();
+        int k = sc.nextInt();
+        
+        int temp=(int)Math.floor(n/k);
+        
+        int arr[] = new int[n];
+        for (int i = 0; i <n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        int count = 1;
+        int count1 = 0;
+        
+        for(int i=0;i<n-1;i++){
+            count=1;
+            for(int j=i+1;j<n;j++){
+                
+                if(arr[i]==arr[j]){
+                    count++;
+                }
+            
+            }
+            
+            if(count==temp){
+                count1++;
+            }
+        }
+        System.out.println(count1);
+
+    }
+}
