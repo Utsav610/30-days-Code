@@ -1,3 +1,8 @@
+/*  Take 'n' as the first line of input ('n' is total number of digits). Then input the number with 'n' digits in new line. 
+Find the sum of digits and product of digits and then the difference of them. */
+
+// Programme : 1
+
 import java.io.*;
 import java.util.*;
 
@@ -15,5 +20,73 @@ public class Solution {
             n1=n1 / 10;   
         }
         System.out.println(product-sum);
+    }
+}
+
+/*  Raam is superstitious. He will only use a particular digit of number as a roll number if its sum of digits is 11. Find those numbers having sum 11.
+Here, find the Nth number having sum 11. So, in short: Given an integer value n, find out the n-th positive integer whose sum is 11. */
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int count=0;
+        int i=29;
+        while(true){
+            int sum=0;
+            int temp=i;
+            
+            while(temp!=0){
+                int rem = temp%10;
+                sum = sum + rem;
+                temp=temp/10;
+            }
+    
+             if(sum==11){
+                count++;
+                }
+            
+             if (count==n){
+                break;
+                }
+            i++;
+        }
+        System.out.println(i);
+ }
+}
+
+/* The Collatz sequence is generated sequentially where
+
+n = n / 2 if n is even
+n = 3 * n + 1 if n is odd
+And the sequence ends if n = 1 */
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int count = 1;
+        while (n != 1) {
+            if (n % 2 == 0){
+               n = n / 2;
+               count++; 
+            }    
+            else{
+               n = 3 * n + 1;
+                count++; 
+            }
+                
+        }
+        System.out.println(count);
     }
 }
