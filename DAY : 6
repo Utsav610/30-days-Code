@@ -1,0 +1,120 @@
+For each nums[i] you have to count the number of valid j's such that j != i and nums[j] < nums[i]. Return the answer in an array.
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        int a[]=new int[n];
+        for(int i=0;i<n;i++){
+            int count=0;
+            for(int j=0;j<n;j++){
+                if(arr[j]<arr[i]){
+                    count++;
+                }
+            }
+            a[i]=count;
+        }
+        for(int i=0;i<n;i++){
+            System.out.print(a[i] + " ");
+        }
+    }
+}
+
+consider a list of numbers, you will have to find product of those numbers whose product is the highest of all. Input nums = [5, 1, 7] Output 35 Explanation 35 is the largest product that can be made from 5 * 7 note :
+negative numbers are also included in the test cases
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        int m = arr.length;
+        maxProduct(arr, m);
+    }
+    static void maxProduct(int arr[], int m) {
+
+        // Sort the array
+        Arrays.sort(arr);
+        int num1, num2;
+
+        // Calculate product of two smallest numbers
+        int sum1 = arr[0] * arr[1];
+
+        // Calculate product of two largest numbers
+        int sum2 = arr[m - 1] * arr[m - 2];
+
+        // print the pairs whose product is greater
+        if (sum1 > sum2) {
+            num1 = arr[0];
+            num2 = arr[1];
+        } else {
+            num1 = arr[m - 2];
+            num2 = arr[m - 1];
+        }
+        System.out.println(num1*num2);
+    }
+}
+
+Given an array of integers of size ‘n’. Our aim is to calculate the maximum sum of ‘k’ consecutive elements in the array.
+Input : n = 10
+k = 4
+arr[] = 1, 4, 2, 10, 23, 3, 1, 0, 20
+Output : 39
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc=new Scanner(System.in);
+        int m=sc.nextInt();
+        int k=sc.nextInt();
+        int arr[]=new int[m];
+        for(int i=0;i<m;i++){
+            arr[i]=sc.nextInt();
+        }
+        int n = arr.length;
+        System.out.println(maxSum(arr, n, k));
+    }
+    public static int maxSum(int arr[], int n, int k)
+    {
+        // k must be greater
+        if (n < k)
+        {
+            System.out.println("Invalid");
+            return -1;
+        }
+
+        // Compute sum of first window of size k
+        int res = 0;
+        for (int i=0; i<k; i++)
+            res += arr[i];
+        int curr_sum = res;
+        for (int i=k; i<n; i++)
+        {
+            curr_sum += arr[i] - arr[i-k];
+            res = Math.max(res, curr_sum);
+        }
+
+        return res;
+    }
+}
